@@ -44,7 +44,7 @@
     </style>
 </head>
 <body>
-    <audio loop autoplay>
+    <audio id="background-music" loop>
         <source src="https://raw.githubusercontent.com/Zahar6301/otkrytka/main/dk-liubov_0gDghS2v.mp3" type="audio/mp3">
         Ваш браузер не поддерживает аудио элемент.
     </audio>
@@ -53,24 +53,30 @@
     </div>
     <div>
         <button class="yes" onclick="changeBackground()">Да</button>
-        <button class="no" disabled>Нет</button> <!-- Кнопка Нет теперь неактивна -->
+        <button class="no" disabled>Нет</button>
     </div>
     
     <script>
+        // Принудительное включение аудио, если браузер блокирует автозапуск
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('background-music');
+            var playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    console.log("Аудио начало воспроизводиться");
+                }).catch(error => {
+                    console.error("Автовоспроизведение аудио заблокировано браузером. Воспроизведение будет запущено вручную.");
+                });
+            }
+        });
+
         function changeBackground() {
             document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/maxresdefault.jpg')";
-            document.querySelector('.invitation').style.display = 'none'; // Скрыть надпись после изменения фона
-            document.querySelector('.yes').style.display = 'none'; // Скрыть кнопку "Да"
-            document.querySelector('.no').style.display = 'none'; // Скрыть кнопку "Нет"
+            setTimeout(function() {
+                document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/kot2.gif')";
+            }, 5000); // Вернуть первый фон через 5 секунд
         }
-        
-        // Проверка и принудительное включение аудио, если браузер блокирует автозапуск
-        document.addEventListener('DOMContentLoaded', function() {
-            var audio = document.querySelector('audio');
-            audio.play().catch(error => {
-                console.error("Автовоспроизведение аудио заблокировано браузером. Воспроизведение будет запущено вручную.");
-            });
-        });
     </script>
 </body>
 </html>
