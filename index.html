@@ -28,6 +28,11 @@
             font-size: 16px;
             margin: 10px;
             cursor: pointer;
+            border: none; /* Убрать стандартные границы */
+            border-radius: 20px; /* Округлённые края */
+            color: white; /* Цвет текста на кнопках */
+            font-weight: bold; /* Жирный шрифт текста */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Тень для кнопок */
         }
         .yes {
             background-color: green;
@@ -40,7 +45,7 @@
 </head>
 <body>
     <audio loop autoplay>
-        <source src="https://raw.githubusercontent.com/Zahar6301/otkrytka/main/dk-liubov_0gDghS2v.mp3" type="audio/mp3">
+        <source src="https://raw.githubusercontent.com/Zahar6301/otkrytka/main/dk-liubov_0gDghS2v.mp3">
         Ваш браузер не поддерживает аудио элемент.
     </audio>
     <div class="invitation">
@@ -58,6 +63,15 @@
                 document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/kot2.gif')";
             }, 20000); // Вернуть первый фон через 20 секунд
         }
+        
+        // Проверка и принудительное включение аудио, если браузер блокирует автозапуск
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.querySelector('audio');
+            audio.play().catch(error => {
+                console.error("Автовоспроизведение аудио заблокировано браузером. Воспроизведение будет запущено вручную.");
+                // Показать кнопку воспроизведения или сообщение, если это необходимо
+            });
+        });
     </script>
 </body>
 </html>
