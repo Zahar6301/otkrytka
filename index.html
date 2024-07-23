@@ -16,11 +16,11 @@
             align-items: center;
             text-align: center;
             font-family: Arial, sans-serif;
+            color: white; /* Устанавливаем цвет текста надписи в белый */
         }
         .invitation {
             font-size: 24px;
             margin-bottom: 20px; /* Отступ перед кнопками */
-            color: black; /* Цвет текста */
         }
         button {
             width: 100px;
@@ -45,7 +45,7 @@
 </head>
 <body>
     <audio loop autoplay>
-        <source src="https://raw.githubusercontent.com/Zahar6301/otkrytka/main/dk-liubov_0gDghS2v.mp3">
+        <source src="https://raw.githubusercontent.com/Zahar6301/otkrytka/main/dk-liubov_0gDghS2v.mp3" type="audio/mp3">
         Ваш браузер не поддерживает аудио элемент.
     </audio>
     <div class="invitation">
@@ -59,9 +59,9 @@
     <script>
         function changeBackground() {
             document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/maxresdefault.jpg')";
-            setTimeout(function() {
-                document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/kot2.gif')";
-            }, 20000); // Вернуть первый фон через 20 секунд
+            document.querySelector('.invitation').style.display = 'none'; // Скрыть надпись после изменения фона
+            document.querySelector('.yes').style.display = 'none'; // Скрыть кнопку "Да"
+            document.querySelector('.no').style.display = 'none'; // Скрыть кнопку "Нет"
         }
         
         // Проверка и принудительное включение аудио, если браузер блокирует автозапуск
@@ -69,7 +69,6 @@
             var audio = document.querySelector('audio');
             audio.play().catch(error => {
                 console.error("Автовоспроизведение аудио заблокировано браузером. Воспроизведение будет запущено вручную.");
-                // Показать кнопку воспроизведения или сообщение, если это необходимо
             });
         });
     </script>
