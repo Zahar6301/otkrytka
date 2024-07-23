@@ -5,92 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Приглашение</title>
     <style>
-        body {
-            background-image: url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/kot2.gif'); /* Исходное фоновое изображение */
-            background-size: cover;
+        body, html {
             height: 100vh;
             margin: 0;
+            padding: 0;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/sdfasf.jpg');
+            background-size: cover;
+            text-align: center;
+        }
+        #content {
+            display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            font-family: Arial, sans-serif;
-            color: white; /* Устанавливаем цвет текста надписи в белый */
-        }
-        .invitation {
-            font-size: 24px;
-            margin-bottom: 20px; /* Отступ перед кнопками */
+            width: 100%;
+            height: 100%;
         }
         button {
-            width: 100px;
-            height: 50px;
+            padding: 10px 20px;
             font-size: 16px;
-            margin: 10px;
             cursor: pointer;
-            border: none; /* Убрать стандартные границы */
-            border-radius: 20px; /* Округлённые края */
-            color: white; /* Цвет текста на кнопках */
-            font-weight: bold; /* Жирный шрифт текста */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Тень для кнопок */
-        }
-        .yes {
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            color: white;
             background-color: green;
-        }
-        .no {
-            background-color: red;
-            cursor: not-allowed; /* Стиль курсора для неактивной кнопки */
         }
     </style>
 </head>
 <body>
-    <audio id="background-music" loop>
-        <source src="https://raw.githubusercontent.com/Zahar6301/otkrytka/main/dk-liubov_0gDghS2v.mp3" type="audio/mp3">
-        Ваш браузер не поддерживает аудио элемент.
-    </audio>
-    <div class="invitation">
-        Приглашаю вкусно покушать и выпить пива
-    </div>
-    <div>
-        <button class="yes" onclick="changeBackgroundAndPlay()">Да</button>
+    <button id="openButton" onclick="openCard()">Открыть открытку</button>
+    <div id="content">
+        <audio id="background-music" loop>
+            <source src="https://raw.githubusercontent.com/Zahar6301/otkrytka/main/dk-liubov_0gDghS2v.mp3" type="audio/mp3">
+            Ваш браузер не поддерживает аудио элемент.
+        </audio>
+        <div class="invitation">
+            Приглашаю вкусно покушать и выпить пива
+        </div>
+        <button class="yes" onclick="changeBackground()">Да</button>
         <button class="no" disabled>Нет</button>
     </div>
-    
+
     <script>
-        // Проверка и принудительное включение аудио
-        document.addEventListener('DOMContentLoaded', function() {
+        function openCard() {
+            var openButton = document.getElementById('openButton');
+            var content = document.getElementById('content');
             var audio = document.getElementById('background-music');
-            var playPromise = audio.play();
-            
-            if (playPromise !== undefined) {
-                playPromise.then(_ => {
-                    console.log("Аудио начало воспроизводиться");
-                }).catch(error => {
-                    console.error("Автовоспроизведение аудио заблокировано браузером. Воспроизведение будет запущено вручную.");
-                });
-            }
-        });
 
-        function changeBackgroundAndPlay() {
-            var body = document.body;
-            var audio = document.getElementById('background-music');
-            var buttons = document.querySelectorAll('button');
-            var invitation = document.querySelector('.invitation');
+            // Скрыть кнопку "Открыть открытку"
+            openButton.style.display = "none";
 
-            // Скрыть все элементы управления
-            invitation.style.display = "none";
-            buttons.forEach(button => button.style.display = "none");
+            // Показать контент
+            content.style.display = "flex";
 
-            // Сменить фон
-            body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/maxresdefault.jpg')";
+            // Воспроизведение музыки
+            audio.play();
+        }
 
-            // Вернуть начальный фон через 5 секунд
+        function changeBackground() {
+            document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/maxresdefault.jpg')";
             setTimeout(function() {
-                body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/kot2.gif')";
-                audio.pause();
-                invitation.style.display = "block";
-                buttons.forEach(button => button.style.display = "block");
-            }, 5000);
+                document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/kot2.gif')";
+            }, 5000); // Вернуть первый фон через 5 секунд
         }
     </script>
 </body>
