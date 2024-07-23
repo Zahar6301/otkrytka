@@ -6,7 +6,7 @@
     <title>Приглашение</title>
     <style>
         body {
-            background-image: url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/kot2.gif'); /* Начальное фоновое изображение */
+            background-image: url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/kot2.gif'); /* Исходное фоновое изображение */
             background-size: cover;
             height: 100vh;
             margin: 0;
@@ -52,12 +52,12 @@
         Приглашаю вкусно покушать и выпить пива
     </div>
     <div>
-        <button class="yes" onclick="changeBackground()">Да</button>
+        <button class="yes" onclick="changeBackgroundAndPlay()">Да</button>
         <button class="no" disabled>Нет</button>
     </div>
     
     <script>
-        // Принудительное включение аудио, если браузер блокирует автозапуск
+        // Проверка и принудительное включение аудио
         document.addEventListener('DOMContentLoaded', function() {
             var audio = document.getElementById('background-music');
             var playPromise = audio.play();
@@ -71,11 +71,26 @@
             }
         });
 
-        function changeBackground() {
-            document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/maxresdefault.jpg')";
+        function changeBackgroundAndPlay() {
+            var body = document.body;
+            var audio = document.getElementById('background-music');
+            var buttons = document.querySelectorAll('button');
+            var invitation = document.querySelector('.invitation');
+
+            // Скрыть все элементы управления
+            invitation.style.display = "none";
+            buttons.forEach(button => button.style.display = "none");
+
+            // Сменить фон
+            body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/maxresdefault.jpg')";
+
+            // Вернуть начальный фон через 5 секунд
             setTimeout(function() {
-                document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/kot2.gif')";
-            }, 5000); // Вернуть первый фон через 5 секунд
+                body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/kot2.gif')";
+                audio.pause();
+                invitation.style.display = "block";
+                buttons.forEach(button => button.style.display = "block");
+            }, 5000);
         }
     </script>
 </body>
