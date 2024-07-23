@@ -9,26 +9,28 @@
             height: 100vh;
             margin: 0;
             padding: 0;
-            background-image: url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/sdfasf.jpg');
-            background-size: cover;
-            background-position: center;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
+            background: no-repeat center center fixed;
+            background-size: cover;
+            transition: background-image 0.5s ease-in-out;
+        }
+        #initial-background {
+            background-image: url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/sdfasf.jpg');
         }
         #content {
             display: none;
+            flex-direction: column;
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white; /* Цвет текста */
+            color: white;
             font-size: 24px;
         }
         button {
@@ -46,11 +48,11 @@
         }
         .no {
             background-color: red;
-            cursor: not-allowed; /* Неактивная кнопка */
+            cursor: not-allowed;
         }
     </style>
 </head>
-<body>
+<body id="initial-background">
     <button id="openButton" onclick="openCard()">Открыть картинку</button>
     <div id="content">
         <audio id="background-music" loop>
@@ -91,6 +93,7 @@
                 document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/sdfasf.jpg')";
                 var openButton = document.getElementById('openButton');
                 openButton.style.display = "block"; // Показать кнопку "Открыть картинку"
+                content.style.display = "none"; // Скрыть контент снова
             }, 3000);
         }
     </script>
