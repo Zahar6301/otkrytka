@@ -15,12 +15,12 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white;
             font-family: Arial, sans-serif;
         }
         .invitation {
             font-size: 24px;
             margin-bottom: 20px; /* Отступ перед кнопками */
+            color: black; /* Цвет текста */
         }
         button {
             width: 100px;
@@ -39,6 +39,10 @@
     </style>
 </head>
 <body>
+    <audio loop autoplay>
+        <source src="your-music-file.mp3" type="audio/mp3">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
     <div class="invitation">
         Приглашаю вкусно покушать и выпить пива
     </div>
@@ -50,6 +54,9 @@
     <script>
         function changeBackground() {
             document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/maxresdefault.jpg')";
+            setTimeout(function() {
+                document.body.style.backgroundImage = "url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/kot2.gif')";
+            }, 20000); // Вернуть первый фон через 20 секунд
         }
     </script>
 </body>
