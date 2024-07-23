@@ -9,20 +9,24 @@
             height: 100vh;
             margin: 0;
             padding: 0;
+            background-image: url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/sdfasf.jpg');
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('https://raw.githubusercontent.com/Zahar6301/otkrytka/main/sdfasf.jpg');
-            background-size: cover;
             text-align: center;
         }
         #content {
             display: none;
+            position: absolute; /* Обеспечиваем, что контент покажется поверх фона */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            width: 100%;
-            height: 100%;
+            font-family: Arial, sans-serif;
         }
         button {
             padding: 10px 20px;
@@ -33,6 +37,16 @@
             font-weight: bold;
             color: white;
             background-color: green;
+            margin: 10px;
+        }
+        .invitation {
+            color: white; /* Устанавливаем белый цвет текста для видимости */
+            font-size: 24px;
+            margin: 20px;
+        }
+        .no {
+            background-color: red;
+            cursor: not-allowed; /* Стиль курсора для неактивной кнопки */
         }
     </style>
 </head>
